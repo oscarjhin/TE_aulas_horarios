@@ -50,7 +50,7 @@
 
                     <tr>
                         <td>Password</td>
-                        <td ><input name="password" type="password" value="${objeto.password}" required></td>  
+                        <td ><input name="password" type="password" value="" required></td>  
                     </tr>
                     
                     <tr class="alt">

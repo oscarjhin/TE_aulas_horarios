@@ -16,7 +16,7 @@ public class Validate extends ConexionDB{
     {boolean resultado=false;
         try {
             
-            String sql="select * from usuario where usuario=? and password=?";
+            String sql="select * from usuario where usuario=? and password=md5(?)";
             pr=con.prepareStatement(sql);
             pr.setString(1, usuario);
             pr.setString(2, password);

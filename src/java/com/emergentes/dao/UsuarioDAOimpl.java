@@ -14,7 +14,7 @@ public class UsuarioDAOimpl extends ConexionDB implements UsuarioDAO {
 
         try {
             this.conectar();
-            PreparedStatement ps = this.conn.prepareStatement("insert into usuario (usuario, password, id_cat_usuario) values (?,?,?);");
+            PreparedStatement ps = this.conn.prepareStatement("insert into usuario (usuario, password, id_cat_usuario) values (?,md5(?),?);");
             ps.setString(1, objeto.getUsuario());
             ps.setString(2, objeto.getPassword());
             ps.setInt(3, objeto.getId_cat_usuario());
@@ -32,7 +32,7 @@ public class UsuarioDAOimpl extends ConexionDB implements UsuarioDAO {
 
         try {
             this.conectar();
-            PreparedStatement ps = this.conn.prepareStatement("UPDATE usuario SET usuario=?, password=?, id_cat_usuario=? WHERE id=?");
+            PreparedStatement ps = this.conn.prepareStatement("UPDATE usuario SET usuario=?, password=md5(?), id_cat_usuario=? WHERE id=?");
             ps.setString(1, objeto.getUsuario());
             ps.setString(2, objeto.getPassword());
             ps.setInt(3, objeto.getId_cat_usuario());
@@ -85,7 +85,7 @@ public class UsuarioDAOimpl extends ConexionDB implements UsuarioDAO {
         List<Usuario> lista = null;
         try {
             this.conectar();
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM usuario where usuario=? and password=?");
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM usuario where usuario=? and password=md5(?)");
             ps.setString(1, us);
             ps.setString(2, pas);
 
