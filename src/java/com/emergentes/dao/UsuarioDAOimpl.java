@@ -50,7 +50,7 @@ public class UsuarioDAOimpl extends ConexionDB implements UsuarioDAO {
     public void update_pas(int id, String pas) throws Exception {
         try {
             this.conectar();
-            PreparedStatement ps=this.conn.prepareStatement("UPDATE usuario SET password=? WHERE id=?");;
+            PreparedStatement ps=this.conn.prepareStatement("UPDATE usuario SET password=md5(?) WHERE id=?");;
             ps.setString(1, pas);
             ps.setInt(2, id);
             ps.executeUpdate();
